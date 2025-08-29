@@ -32,8 +32,8 @@ export const WinningHandOwnList: React.FC<WinningHandOwnListProps> = ({
                     >
                         {/* Hand Cards */}
                         <div className="flex gap-1 min-w-[200px]">
-                            {entry.hand.map((cardId, idx) => (
-                                <Card key={idx} cardId={cardId} className={" w-16 h-24"}  />
+                            {entry.hand.map((cardType, idx) => (
+                                <Card key={idx} cardType={cardType} className={" w-16 h-24"}  />
                             ))}
                         </div>
 
