@@ -9,7 +9,7 @@ export const GameComponentWrapper = () => {
 
 
     const checkIfUserInGame =
-        game?.players.some(player => player.userId === user.id) || false;
+        game?.players.some(player => player.userId === user?.id) || false;
     return (
         <div className="relative flex flex-col h-screen">
             <GameTable userInGame={checkIfUserInGame}/>

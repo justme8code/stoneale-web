@@ -2,7 +2,6 @@
 
 import React, {useState} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {Toaster} from "@/components/ui/sonner";
 
 // This is the provider component
 export default function QueryProvider({

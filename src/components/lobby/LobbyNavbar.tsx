@@ -1,6 +1,6 @@
 "use client";
 
-import {MessageCircle, Volume2, Settings, Users} from "lucide-react";
+import {MessageCircle, Volume2, Settings} from "lucide-react";
 import {AnimatedButton} from "@/components/AnimatedButton";
 import {FriendsListModal} from "@/components/lobby/FriendsListModal";
 

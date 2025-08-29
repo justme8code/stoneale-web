@@ -24,8 +24,8 @@ export default defineConfig({
             "@": path.resolve(__dirname, "./src"),
         },
     },
-    server: {
+    /*server: {
         host: true, // allows access from network
         allowedHosts: ['1e693b894951.ngrok-free.app'], // add your ngrok URL here
-    },
+    },*/
 })

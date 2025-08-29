@@ -1,8 +1,9 @@
 import {AnimatePresence, motion} from "framer-motion";
 import {ChipStack} from "@/components/game/ChipStack.tsx";
 import {useTablePositions} from "@/hooks/useTablePositions.ts";
+import type {PlayerState} from "@/components/game/types.ts";
 
-export const PlayerCurrentChips = ({player}) => {
+export const PlayerCurrentChips = ({player}:{player:PlayerState}) => {
     const {getBetPositionClasses,getStackPositionClasses} = useTablePositions();
     return (
         <>

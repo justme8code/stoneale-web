@@ -27,6 +27,8 @@ import { LogIn, Search } from "lucide-react";
 import { CreateGameModal } from "@/components/lobby/CreateNewGameModal";
 
 import { JOIN_GAME, FETCH_GAMES } from "@/query-types/game";
+import type {GameState, PlayerState} from "@/components/game/types.ts";
+import {getErrorMessage} from "@/lib/helpers.ts";
 
 export const OngoingGameList = () => {
     const { user } = useAuthStore();
@@ -79,7 +81,7 @@ export const OngoingGameList = () => {
         try {
             const result = await joinGame({
                 gameId,
-                userId: user.id,
+                userId: user?.id,
                 chips,
             });
 
@@ -95,14 +97,15 @@ export const OngoingGameList = () => {
                     description: `You are now seated at table ${gameId.substring(0, 8)}...`,
                 });
 
-                navigate({
+                await navigate({
                     to: "/app/game/$gameId",
-                    params: { gameId },
+                    params: {gameId},
                 });
             }
-        } catch (err: any) {
+        } catch (error: unknown) {
+            const err = getErrorMessage(error);
             toast.error("Unexpected error", {
-                description: err.message ?? "Something went wrong",
+                description: err ?? "Something went wrong",
             });
         }
     };
@@ -110,7 +113,7 @@ export const OngoingGameList = () => {
     // ✅ detect if user is already seated in a game
     const activeGames = data?.fetchGames.games ?? [];
     const userGame = activeGames.find((g) =>
-        g.players.some((p: any) => p.userId === user.id)
+        g.players.some((p: PlayerState) => p.userId === user?.id)
     );
 
     return (
@@ -195,9 +198,9 @@ export const OngoingGameList = () => {
                                              </TableCell>
                                          </TableRow>
                                      ) : (
-                                         activeGames.map((game) => {
+                                         activeGames.map((game:GameState) => {
                                              const isUserInThisGame = game.players.some(
-                                                 (p: any) => p.userId === user.id
+                                                 (p: PlayerState) => p.userId === user?.id
                                              );
                                              return (
                                                  <TableRow

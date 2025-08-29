@@ -7,6 +7,7 @@ import { useMutation } from "urql";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
 import {LEAVE_GAME, START_GAME} from "@/query-types/game.ts";
+import {getErrorMessage} from "@/lib/helpers.ts";
 
 export const GameRightSidebar = () => {
     const { game, clearGame } = useGameStore();
@@ -18,11 +19,11 @@ export const GameRightSidebar = () => {
 
     if (!game) return null;
 
-    const me = game.players.find((p) => p.userId === user.id);
+    const me = game.players.find((p) => p.userId === user?.id);
 
     const handleLeave = async () => {
         try {
-            const result = await leaveGame({ gameId: game.id, userId: user.id });
+            const result = await leaveGame({ gameId: game.id, userId: user?.id });
             if (result.error) {
                 toast.error("Failed to leave game", { description: result.error.message });
                 return;
@@ -39,9 +40,10 @@ export const GameRightSidebar = () => {
                 clearGame();
                 navigate({ to: "/app/lobby" });
             }
-        } catch (err: any) {
+        } catch (error: unknown) {
+            const err = getErrorMessage(error);
             toast.error("Unexpected error", {
-                description: err.message ?? "Something went wrong",
+                description: err,
                 className: "bg-red-600 text-white rounded-xl shadow-lg border border-red-700",
             });
 
@@ -59,9 +61,10 @@ export const GameRightSidebar = () => {
                 return;
             }
             if (result.data?.startGame) toast.success("Game started!");
-        } catch (err: any) {
+        } catch (error: unknown) {
+            const err = getErrorMessage(error);
             toast.error("Unexpected error", {
-                description: err.message ?? "Something went wrong",
+                description: err,
                 className: "bg-red-600 text-white rounded-xl shadow-lg border border-red-700",
             });
 

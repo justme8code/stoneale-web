@@ -39,7 +39,7 @@ export const RenderTablePositions = () => {
                         {player && (
                             <PlayerProfile
                                 player={player}
-                                isSelf={player.userId === user.id}
+                                isSelf={player.userId === user?.id}
                                 position={getPlayerPositionType(position.positionType)}
                                 seatNumber={index}
                             />

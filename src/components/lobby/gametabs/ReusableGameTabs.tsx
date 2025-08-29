@@ -1,6 +1,7 @@
-import {ReactNode} from "react";
+
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import type {ReactNode} from "react";
 
 export type TabsProps = {
     value:string;

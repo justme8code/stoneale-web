@@ -21,7 +21,7 @@ export const PlayerActions = () => {
 
     if (!game) return null;
 
-    const self = game.players.find((p) => p.userId === user.id);
+    const self = game.players.find((p) => p.userId === user?.id);
     const isMyTurn = !!self && self.seat === game.turnIndex;
 
     if (!isMyTurn || !self) return null;

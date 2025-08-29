@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import type { Suit, Rank, CardType } from './types';
+import type { Suit, CardType } from './types';
 import backCardIcon from "@/assets/cp2.png";
 // --- Sub-components for Front and Back ---
 

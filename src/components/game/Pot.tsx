@@ -2,7 +2,6 @@
 import React from 'react';
 import { ChipStack } from './ChipStack';
 import { AnimatePresence, motion } from "motion/react"
-import {MoneyCounter} from "@/components/game/MoneyCounter";
 
 interface PotProps {
     total: number;

@@ -65,6 +65,7 @@ export function ConnectWallet() {
         await logout();
     };
 
+
     return (
         <div className="space-y-4 p-10">
             {/* The Wagmi/Web3Modal button for connecting and selecting networks */}

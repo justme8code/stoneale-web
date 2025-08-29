@@ -1,10 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import type {ReactNode} from "react";
 
 interface SidebarButtonProps extends HTMLMotionProps<"button">,
     VariantProps<typeof buttonVariants> {

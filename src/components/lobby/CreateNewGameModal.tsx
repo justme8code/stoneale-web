@@ -14,8 +14,8 @@ import { AnimatedButton } from "@/components/AnimatedButton";
 import {createGame} from "@/api/game.ts";
 
 const formSchema = z.object({
-    smallBlind: z.coerce.number().min(5, { message: "Small blind must be at least 1." }),
-    bigBlind: z.coerce.number().min(10, { message: "Big blind must be at least 2." }),
+    smallBlind: z.number().min(5, { message: "Small blind must be at least 1." }),
+    bigBlind: z.number().min(10, { message: "Big blind must be at least 2." }),
 });
 
 export const CreateGameModal = () => {
