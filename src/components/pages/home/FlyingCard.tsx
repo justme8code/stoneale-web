@@ -1,11 +1,10 @@
 'use client';
 
 import { motion } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 
 type FlyingCardProps = {
-    src: StaticImageData;
+    src: string;
     width?: number;
     height?: number;
     opacity?: number;
@@ -48,7 +47,7 @@ export const FlyingCard = ({
                 repeatType: "loop",
             }}
         >
-            <Image
+            <img
                 src={src}
                 alt="flying_card"
                 width={width}

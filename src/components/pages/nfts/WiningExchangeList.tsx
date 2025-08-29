@@ -1,12 +1,12 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {Card} from "@/components/game/Card";
-import {CardType} from "@/components/game/types";
+import type {CardType} from "@/components/game/types";
 import {Avatar, AvatarImage} from "@/components/ui/avatar";
 import {AnimatedButton} from "@/components/AnimatedButton";
 import {MoveUpRight} from "lucide-react";
+import React from "react";
 
 
 interface HandOffer {
@@ -52,15 +52,15 @@ export const WinningHandExchangeList: React.FC<WinningHandExchangeListProps> = (
 
                         {/* Offered hand (2 cards) */}
                         <div className="flex gap-1 min-w-[90px]">
-                            {offer.offeredCards.map((cardId, idx) => (
-                                <Card key={idx} cardId={cardId} className={" w-16 h-24"} />
+                            {offer.offeredCards.map((cardType, idx) => (
+                                <Card key={idx} cardType={cardType} className={" w-16 h-24"} />
                             ))}
                         </div>
 
                         {/* Required hand (5 cards) */}
                         <div className="flex gap-1 min-w-[180px]">
-                            {offer.requiredCards.map((cardId, idx) => (
-                                <Card key={idx} cardId={cardId} className={" w-16 h-24"} />
+                            {offer.requiredCards.map((cardType, idx) => (
+                                <Card key={idx} cardType={cardType} className={" w-16 h-24"} />
                             ))}
                         </div>
 
