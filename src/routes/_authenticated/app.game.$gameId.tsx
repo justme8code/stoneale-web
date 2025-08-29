@@ -1,11 +1,9 @@
 "use client";
 import { createFileRoute } from "@tanstack/react-router";
-import { gql, useQuery, useSubscription } from "urql";
+import { useQuery, useSubscription } from "urql";
 import { useGameStore } from "@/store/gameStore";
 import {useEffect} from "react";
 import {GAME_UPDATES, GET_GAME} from "@/query-types/game.ts";
-import {GameRightSidebar} from "@/components/game/GameRightSideBar.tsx";
-import {GameTable} from "@/components/game/GameTable.tsx";
 import {GameComponentWrapper} from "@/components/game/GameComponentWrapper.tsx";
 
 export const Route = createFileRoute("/_authenticated/app/game/$gameId")({

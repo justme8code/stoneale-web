@@ -8,36 +8,15 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PostsIndexRouteImport } from './routes/posts/index'
-import { Route as PostsPostIdRouteImport } from './routes/posts/$postId'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as AuthenticatedAppLobbyRouteImport } from './routes/_authenticated/app.lobby'
 import { Route as AuthenticatedAppGameGameIdRouteImport } from './routes/_authenticated/app.game.$gameId'
 
-const AboutLazyRouteImport = createFileRoute('/about')()
-
-const AboutLazyRoute = AboutLazyRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PostsIndexRoute = PostsIndexRouteImport.update({
-  id: '/posts/',
-  path: '/posts/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PostsPostIdRoute = PostsPostIdRouteImport.update({
-  id: '/posts/$postId',
-  path: '/posts/$postId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
@@ -59,98 +38,48 @@ const AuthenticatedAppGameGameIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutLazyRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/posts': typeof PostsIndexRoute
   '/app/lobby': typeof AuthenticatedAppLobbyRoute
   '/app/game/$gameId': typeof AuthenticatedAppGameGameIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutLazyRoute
   '/app': typeof AuthenticatedAppRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/posts': typeof PostsIndexRoute
   '/app/lobby': typeof AuthenticatedAppLobbyRoute
   '/app/game/$gameId': typeof AuthenticatedAppGameGameIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutLazyRoute
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/posts/': typeof PostsIndexRoute
   '/_authenticated/app/lobby': typeof AuthenticatedAppLobbyRoute
   '/_authenticated/app/game/$gameId': typeof AuthenticatedAppGameGameIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/app'
-    | '/posts/$postId'
-    | '/posts'
-    | '/app/lobby'
-    | '/app/game/$gameId'
+  fullPaths: '/' | '/app' | '/app/lobby' | '/app/game/$gameId'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/app'
-    | '/posts/$postId'
-    | '/posts'
-    | '/app/lobby'
-    | '/app/game/$gameId'
+  to: '/' | '/app' | '/app/lobby' | '/app/game/$gameId'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/_authenticated/app'
-    | '/posts/$postId'
-    | '/posts/'
     | '/_authenticated/app/lobby'
     | '/_authenticated/app/game/$gameId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutLazyRoute: typeof AboutLazyRoute
   AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
-  PostsPostIdRoute: typeof PostsPostIdRoute
-  PostsIndexRoute: typeof PostsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/posts/': {
-      id: '/posts/'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof PostsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/posts/$postId': {
-      id: '/posts/$postId'
-      path: '/posts/$postId'
-      fullPath: '/posts/$postId'
-      preLoaderRoute: typeof PostsPostIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/app': {
@@ -192,10 +121,7 @@ const AuthenticatedAppRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutLazyRoute: AboutLazyRoute,
   AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
-  PostsPostIdRoute: PostsPostIdRoute,
-  PostsIndexRoute: PostsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -5,14 +5,14 @@ import "./index.css";
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
-import {createAuthContext, getAllCookiesAsString} from "@/lib/cookieHelper.ts";
+import {type AuthContext, createAuthContext, getAllCookiesAsString} from "@/lib/cookieHelper.ts";
 import Providers from "@/providers/Providers.tsx";
 
 // Create a new router instance
 const router = createRouter({
     routeTree,
     context: {
-        auth: createAuthContext(), // Now synchronous
+        auth: createAuthContext() as AuthContext , // Now synchronous
     },
 })
 

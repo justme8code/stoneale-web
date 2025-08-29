@@ -43,7 +43,7 @@ function Index() {
                            }} />
                        </div>
                        <div className={"rotate-12"}>
-                           <PlayCard image={upcomingGames} text={"Upcoming Games"} onClick={() => navigate({ to: "/lobby" })} />
+                           <PlayCard image={upcomingGames} text={"Upcoming Games"} onClick={() => navigate({ to: "/app/lobby" })} />
                        </div>
                    </div>
                </div>

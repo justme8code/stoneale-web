@@ -20,11 +20,13 @@ export const urqlClient = new Client({
         cacheExchange,
         fetchExchange,
         subscriptionExchange({
-            forwardSubscription(operation) {
+            forwardSubscription(request) {
+                const input = { ...request, query: request.query || '' };
                 return {
-                    subscribe: (sink) => ({
-                        unsubscribe: wsClient.subscribe(operation, sink),
-                    }),
+                    subscribe(sink) {
+                        const unsubscribe = wsClient.subscribe(input, sink);
+                        return { unsubscribe };
+                    },
                 };
             },
         }),
